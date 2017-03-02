@@ -32,8 +32,14 @@ class App extends Component {
         return (
             <div>
                 <div className="menu">
-                <button className="boton-menu" onClick={this.cambiarSeleccion.bind(this, 1)}>Busqueda simple</button>
-                <button className="boton-menu" onClick={this.cambiarSeleccion.bind(this, 2)}>Busqueda por categorías</button>
+                    <span className="logo">Develove</span>
+                    <span>
+                        <button className="boton-menu" onClick={this.cambiarSeleccion.bind(this, 1)}>Busqueda simple
+                        </button>
+                        <button className="boton-menu" onClick={this.cambiarSeleccion.bind(this, 2)}>Busqueda por
+                            categorías
+                        </button>
+                    </span>
                 </div>
                 {page}
             </div>
