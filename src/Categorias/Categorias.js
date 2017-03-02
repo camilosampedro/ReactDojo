@@ -4,8 +4,14 @@ export default class Categorias extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            value:'',
             categorias: []
         };
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(event){
+      this.setState({value: event.target.value});
+      console.log(event.target.value);
     }
 
      componentDidMount() {
@@ -25,17 +31,12 @@ export default class Categorias extends Component {
 
     render() {
        return (
-            <div>
-                <h1>Categorias</h1>
-                <select>
-                {
-                    this.state.categorias.map(categoria => {
-                        return <option value={categoria.id}>{categoria.name}</option>
-                    })
-                }
+            // <div>
+                // <h1>Categorias</h1>
+                <select value={this.state.value} onChange={this.handleChange}>
+                {this.state.categorias.map(categoria => <option value={categoria.id}>{categoria.name}</option>)}
                 </select>
-            </div>
-           
+            // </div>
         );
     }
 }
