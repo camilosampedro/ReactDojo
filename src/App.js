@@ -1,39 +1,47 @@
 import React, {Component} from 'react';
-import ResultComponent from './ResultComponent';
-
-//import logo from './logo.svg';
+import BusquedaSimple from './BusquedaSimple/BusquedaSimple';
+import BusquedaPorCategoria from './BusquedaPorCategoria/BusquedaPorCategoria';
 import './App.css';
-import axios from 'axios';
-
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.loadUsers();
-        this.state = {results: []};
+        // this.loadUsers();
+        this.state = {
+            seleccion: 1
+        };
     }
 
+    categoria = 'MCO1574';
+
+    cambiarSeleccion(numero) {
+        this.setState({seleccion: numero});
+    }
 
     render() {
-        console.log(this.state);
-        return (
-          <div className="container">{this.state.results.map(function (result, j) {
-            return (<ResultComponent id={result.id} title={result.title} image={result.thumbnail}></ResultComponent>);
-        })}
-        </div>);
-    }
+        let page;
+        switch (this.state.seleccion) {
+            default:
+                page = <BusquedaSimple />;
+                break;
+            case 2:
+                page = <BusquedaPorCategoria categoria={this.categoria}/>;
+                break;
+        }
 
-    loadUsers() {
-        let _this = this;
-        axios.get('https://api.mercadolibre.com/sites/MCO/search?q=audifonos').then(function (response) {
-            console.log(response);
-            _this.setState({
-                results: response.data.results
-            });
-        }).catch(function (error) {
-            console.error(error);
-            return null;
-        })
+        return (
+            <div>
+                <div className="menu">
+                <div className="item-menu">
+                  <button className="boton-menu" onClick={this.cambiarSeleccion.bind(this, 1)}>Busqueda simple</button>
+                </div>
+                <div className="item-menu">
+                  <button className="boton-menu" onClick={this.cambiarSeleccion.bind(this, 2)}>Busqueda por categorías</button>
+                </div>
+                </div>
+                {page}
+            </div>
+        );
     }
 }
 
