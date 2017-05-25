@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+// import App from './App';
 import Categorias from './Categorias/Categorias'
-import BusquedaPorCategoria from './BusquedaPorCategoria'
 import './index.css';
 
 ReactDOM.render(

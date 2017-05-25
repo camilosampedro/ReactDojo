@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
+import BusquedaPorCategoria from '../BusquedaPorCategoria'
 
 export default class Categorias extends Component {
     constructor(props) {
         super(props);
         this.state = {
             value:'',
-            categorias: []
+            categorias: [],
         };
-        this.handleChange = this.handleChange.bind(this);
+        // this.handleChange = this.handleChange.bind(this);
     }
     handleChange(event){
       this.setState({value: event.target.value});
-      console.log(event.target.value);
+      // console.log(event.target.value);
+      // return <BusquedaPorCategoria categoria = {event.target.value}/>
     }
+
 
      componentDidMount() {
         this.state = {
@@ -31,12 +34,16 @@ export default class Categorias extends Component {
 
     render() {
        return (
-            // <div>
-                // <h1>Categorias</h1>
-                <select value={this.state.value} onChange={this.handleChange}>
-                {this.state.categorias.map(categoria => <option value={categoria.id}>{categoria.name}</option>)}
+         <div>
+            <h1>Categorias</h1>
+                <select value={this.state.value} onChange={this.handleChange.bind(this)}>
+                    <option value=''>Seleccionar categoria</option>
+                    {this.state.categorias.map(categoria => <option value={categoria.id}>{categoria.name}</option>)}
                 </select>
-            // </div>
+                <h1>{this.state.value}</h1>
+                <BusquedaPorCategoria categoria = {this.state.value}/>
+
+          </div>
         );
     }
 }
